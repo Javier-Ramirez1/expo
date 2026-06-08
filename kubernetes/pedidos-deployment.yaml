@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: pedidos-deployment
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: pedidos
+
+  template:
+    metadata:
+      labels:
+        app: pedidos
+
+    spec:
+      containers:
+        - name: pedidos
+          image: pedidos-service:latest
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 8083
