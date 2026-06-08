@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: usuarios-deployment
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: usuarios
+
+  template:
+    metadata:
+      labels:
+        app: usuarios
+
+    spec:
+      containers:
+        - name: usuarios
+          image: usuarios-service:latest
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 8081

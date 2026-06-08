@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: productos-deployment
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: productos
+
+  template:
+    metadata:
+      labels:
+        app: productos
+
+    spec:
+      containers:
+        - name: productos
+          image: productos-service:latest
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 8082
