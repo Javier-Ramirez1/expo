@@ -2,6 +2,7 @@ package com.example.frontendservice.dto;
 
 public class Pedido {
 
+
     private Long id;
 
     private Long usuarioId;
@@ -15,6 +16,7 @@ public class Pedido {
     private String nombreUsuario;
 
     private String nombreProducto;
+
 
     public Pedido() {
     }

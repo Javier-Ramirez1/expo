@@ -33,19 +33,40 @@ public class PedidoViewController {
                 .retrieve()
                 .body(Producto[].class);
 
+        var listaPedidos = Arrays.asList(pedidos);
+        var listaUsuarios = Arrays.asList(usuarios);
+        var listaProductos = Arrays.asList(productos);
+
+        for (Pedido pedido : listaPedidos) {
+
+            listaUsuarios.stream()
+                    .filter(u ->
+                            u.getId().equals(
+                                    pedido.getUsuarioId()))
+                    .findFirst()
+                    .ifPresent(u ->
+                            pedido.setNombreUsuario(
+                                    u.getNombre()));
+
+            listaProductos.stream()
+                    .filter(p ->
+                            p.getId().equals(
+                                    pedido.getProductoId()))
+                    .findFirst()
+                    .ifPresent(p ->
+                            pedido.setNombreProducto(
+                                    p.getNombre()));
+        }
+
         model.addAttribute("pedido", new Pedido());
-
-        model.addAttribute("pedidos",
-                Arrays.asList(pedidos));
-
-        model.addAttribute("usuarios",
-                Arrays.asList(usuarios));
-
-        model.addAttribute("productos",
-                Arrays.asList(productos));
+        model.addAttribute("pedidos", listaPedidos);
+        model.addAttribute("usuarios", listaUsuarios);
+        model.addAttribute("productos", listaProductos);
 
         return "pedidos";
+
     }
+
 
     @GetMapping("/pedidos/editar/{id}")
     public String editar(
@@ -72,10 +93,36 @@ public class PedidoViewController {
                 .retrieve()
                 .body(Producto[].class);
 
+        var listaPedidos = Arrays.asList(pedidos);
+        var listaUsuarios = Arrays.asList(usuarios);
+        var listaProductos = Arrays.asList(productos);
+
+        for (Pedido p : listaPedidos) {
+
+            listaUsuarios.stream()
+                    .filter(u ->
+                            u.getId().equals(
+                                    p.getUsuarioId()))
+                    .findFirst()
+                    .ifPresent(u ->
+                            p.setNombreUsuario(
+                                    u.getNombre()));
+
+            listaProductos.stream()
+                    .filter(prod ->
+                            prod.getId().equals(
+                                    p.getProductoId()))
+                    .findFirst()
+                    .ifPresent(prod ->
+                            p.setNombreProducto(
+                                    prod.getNombre()));
+        }
+
         model.addAttribute("pedido", pedido);
-        model.addAttribute("pedidos", Arrays.asList(pedidos));
-        model.addAttribute("usuarios", Arrays.asList(usuarios));
-        model.addAttribute("productos", Arrays.asList(productos));
+        model.addAttribute("pedidos", listaPedidos);
+        model.addAttribute("usuarios", listaUsuarios);
+        model.addAttribute("productos", listaProductos);
+
 
         return "pedidos";
     }

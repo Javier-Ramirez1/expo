@@ -174,8 +174,8 @@
                 <tr>
 
                     <th>ID</th>
-                    <th>Usuario ID</th>
-                    <th>Producto ID</th>
+                    <th>Usuario</th>
+                    <th>Producto</th>
                     <th>Cantidad</th>
                     <th>Total</th>
                     <th>Acciones</th>
@@ -190,9 +190,9 @@
 
                     <td th:text="${p.id}"></td>
 
-                    <td th:text="${p.usuarioId}"></td>
+                    <td th:text="${p.nombreUsuario}"></td>
 
-                    <td th:text="${p.productoId}"></td>
+                    <td th:text="${p.nombreProducto}"></td>
 
                     <td th:text="${p.cantidad}"></td>
 
@@ -210,6 +210,7 @@
                            onclick="return confirm('¿Eliminar pedido?')">
                             Eliminar
                         </a>
+
 
                     </td>
 
