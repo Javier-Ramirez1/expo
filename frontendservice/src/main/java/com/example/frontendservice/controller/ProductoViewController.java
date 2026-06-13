@@ -17,7 +17,7 @@ public class ProductoViewController {
     public String productos(Model model) {
 
         Producto[] productos = restClient.get()
-                .uri("http://localhost:8082/productos")
+                .uri("http://productos-service:8082/productos")
                 .retrieve()
                 .body(Producto[].class);
 
@@ -36,12 +36,12 @@ public class ProductoViewController {
             Model model) {
 
         Producto producto = restClient.get()
-                .uri("http://localhost:8082/productos/" + id)
+                .uri("http://productos-service:8082/productos/" + id)
                 .retrieve()
                 .body(Producto.class);
 
         Producto[] productos = restClient.get()
-                .uri("http://localhost:8082/productos")
+                .uri("http://productos-service:8082/productos")
                 .retrieve()
                 .body(Producto[].class);
 
@@ -59,7 +59,7 @@ public class ProductoViewController {
         if (producto.getId() == null) {
 
             restClient.post()
-                    .uri("http://localhost:8082/productos")
+                    .uri("http://productos-service:8082/productos")
                     .body(producto)
                     .retrieve()
                     .toBodilessEntity();
@@ -67,7 +67,7 @@ public class ProductoViewController {
         } else {
 
             restClient.put()
-                    .uri("http://localhost:8082/productos/" + producto.getId())
+                    .uri("http://productos-service:8082/productos/" + producto.getId())
                     .body(producto)
                     .retrieve()
                     .toBodilessEntity();
@@ -81,7 +81,7 @@ public class ProductoViewController {
             @PathVariable Long id) {
 
         restClient.delete()
-                .uri("http://localhost:8082/productos/" + id)
+                .uri("http://productos-service:8082/productos/" + id)
                 .retrieve()
                 .toBodilessEntity();
 

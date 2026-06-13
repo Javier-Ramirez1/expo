@@ -17,17 +17,17 @@ public class HomeController {
     public String inicio(Model model) {
 
         Usuario[] usuarios = restClient.get()
-                .uri("http://localhost:8081/usuarios")
+                .uri("http://usuarios-service:8081/usuarios")
                 .retrieve()
                 .body(Usuario[].class);
 
         Producto[] productos = restClient.get()
-                .uri("http://localhost:8082/productos")
+                .uri("http://productos-service:8082/productos")
                 .retrieve()
                 .body(Producto[].class);
 
         Pedido[] pedidos = restClient.get()
-                .uri("http://localhost:8083/pedidos")
+                .uri("http://pedidos-service:8083/pedidos")
                 .retrieve()
                 .body(Pedido[].class);
 

@@ -37,7 +37,7 @@ public class PedidoService {
     public Pedido guardar(Pedido pedido) {
 
         ProductoDTO producto = restClient.get()
-                .uri("http://localhost:8082/productos/" +
+                .uri("http://productos-service:8082/productos/" +
                         pedido.getProductoId())
                 .retrieve()
                 .body(ProductoDTO.class);
@@ -70,7 +70,7 @@ public class PedidoService {
                         - pedido.getCantidad();
 
         restClient.put()
-                .uri("http://localhost:8082/productos/stock/"
+                .uri("http://productos-service:8082/productos/stock/"
                         + producto.getId()
                         + "?stock="
                         + nuevoStock)

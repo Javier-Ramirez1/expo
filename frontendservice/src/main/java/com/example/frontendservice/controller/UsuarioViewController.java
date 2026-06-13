@@ -18,7 +18,7 @@ public class UsuarioViewController {
     public String usuarios(Model model) {
 
         Usuario[] usuarios = restClient.get()
-                .uri("http://localhost:8081/usuarios")
+                .uri("http://usuarios-service:8081/usuarios")
                 .retrieve()
                 .body(Usuario[].class);
 
@@ -34,12 +34,12 @@ public class UsuarioViewController {
             Model model) {
 
         Usuario usuario = restClient.get()
-                .uri("http://localhost:8081/usuarios/" + id)
+                .uri("http://usuarios-service:8081/usuarios/" + id)
                 .retrieve()
                 .body(Usuario.class);
 
         Usuario[] usuarios = restClient.get()
-                .uri("http://localhost:8081/usuarios")
+                .uri("http://usuarios-service:8081/usuarios")
                 .retrieve()
                 .body(Usuario[].class);
 
@@ -56,7 +56,7 @@ public class UsuarioViewController {
         if (usuario.getId() == null) {
 
             restClient.post()
-                    .uri("http://localhost:8081/usuarios")
+                    .uri("http://usuarios-service:8081/usuarios")
                     .body(usuario)
                     .retrieve()
                     .toBodilessEntity();
@@ -64,7 +64,7 @@ public class UsuarioViewController {
         } else {
 
             restClient.put()
-                    .uri("http://localhost:8081/usuarios/" + usuario.getId())
+                    .uri("http://usuarios-service:8081/usuarios/" + usuario.getId())
                     .body(usuario)
                     .retrieve()
                     .toBodilessEntity();
@@ -79,7 +79,7 @@ public class UsuarioViewController {
             @PathVariable Long id) {
 
         restClient.delete()
-                .uri("http://localhost:8081/usuarios/" + id)
+                .uri("http://usuarios-service:8081/usuarios/" + id)
                 .retrieve()
                 .toBodilessEntity();
 
